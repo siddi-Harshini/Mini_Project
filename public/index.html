@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Scholarship & Programs Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎓 ScholarMatch</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scholarships.html">Scholarships</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="login.html" class="btn-primary">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Your Perfect Scholarship & Program</h1>
+                <p class="hero-subtitle">AI-powered platform to match you with the best opportunities based on your profile</p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn btn-primary btn-lg">Get Started</a>
+                    <a href="scholarships.html" class="btn btn-secondary btn-lg">Browse Scholarships</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose ScholarMatch?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized Matching</h3>
+                    <p>Get scholarships and programs tailored to your profile, skills, and interests</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Deadline Alerts</h3>
+                    <p>Never miss an opportunity with smart deadline sorting and notifications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Chatbot</h3>
+                    <p>Get instant answers to your questions about scholarships and programs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Easy Management</h3>
+                    <p>Admin panel to add and manage opportunities effortlessly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Find Your Opportunity?</h2>
+            <p>Join hundreds of students discovering scholarships and programs</p>
+            <a href="register.html" class="btn btn-primary btn-lg">Create Account</a>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget">
+        <button id="chatbot-toggle" class="chatbot-toggle">
+            💬
+        </button>
+        <div id="chatbot-container" class="chatbot-container" style="display: none;">
+            <div class="chatbot-header">
+                <h4>ScholarMatch Assistant</h4>
+                <button id="chatbot-close">×</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="bot-message">
+                    <p>Hi! I'm here to help you with any questions about scholarships and programs. How can I assist you today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Ask me anything...">
+                <button id="chatbot-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ScholarMatch Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/chatbot.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

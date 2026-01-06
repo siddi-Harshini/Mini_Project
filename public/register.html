@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ScholarMatch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">🎓 ScholarMatch</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card register-card">
+                <h2>Create Your Account</h2>
+                <p class="auth-subtitle">Join ScholarMatch to discover personalized opportunities</p>
+                
+                <form id="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required minlength="6">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Register As</label>
+                            <select id="role" name="role" required>
+                                <option value="student">Student</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Student Profile Section -->
+                    <div id="student-profile" style="display: block;">
+                        <h3 class="section-subtitle">Student Profile (for personalized matching)</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Prefer not to say</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="year">Current Year</label>
+                                <select id="year" name="year">
+                                    <option value="">Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department">
+                                    <option value="">Select Department</option>
+                                    <option value="CS">Computer Science</option>
+                                    <option value="IT">Information Technology</option>
+                                    <option value="ECE">Electronics & Communication</option>
+                                    <option value="EEE">Electrical Engineering</option>
+                                    <option value="MECH">Mechanical Engineering</option>
+                                    <option value="CIVIL">Civil Engineering</option>
+                                    <option value="OTHER">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cgpa">CGPA</label>
+                                <input type="number" id="cgpa" name="cgpa" step="0.01" min="0" max="10" placeholder="e.g., 8.5">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skills">Skills (comma-separated)</label>
+                            <input type="text" id="skills" name="skills" placeholder="e.g., Python, JavaScript, Machine Learning">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interests">Interests (comma-separated)</label>
+                            <input type="text" id="interests" name="interests" placeholder="e.g., Web Development, AI, Data Science">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" placeholder="e.g., India, USA">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="graduationYear">Graduation Year</label>
+                                <input type="number" id="graduationYear" name="graduationYear" min="2024" max="2030" placeholder="e.g., 2026">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="error-message" style="display: none;"></div>
+                    <div id="success-message" class="success-message" style="display: none;"></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+
+                <p class="auth-footer">
+                    Already have an account? <a href="login.html">Login here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

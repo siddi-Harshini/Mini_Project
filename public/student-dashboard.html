@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - ScholarMatch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎓 ScholarMatch</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#all-opportunities">All Opportunities</a></li>
+                <li><a href="#my-matches">My Matches</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><span id="student-name"></span></li>
+                <li><button class="btn btn-primary" onclick="logout()">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Welcome, <span id="student-welcome"></span>!</h2>
+                <p>Discover scholarships and programs tailored to your profile</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <h3>🎯 Your Matches</h3>
+                    <div class="stat-number" id="eligible-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>📚 Total Opportunities</h3>
+                    <div class="stat-number" id="total-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>⏰ Urgent Deadlines</h3>
+                    <div class="stat-number" id="urgent-count">0</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border-color);">
+                <button class="tab-btn active" onclick="switchTab('my-matches')">My Eligible Matches</button>
+                <button class="tab-btn" onclick="switchTab('all-opportunities')">All Opportunities</button>
+            </div>
+
+            <!-- My Matches Tab -->
+            <div id="my-matches-tab" class="tab-content">
+                <div class="card">
+                    <h3>🎯 Scholarships Matched for You</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Based on your profile, CGPA, skills, and interests</p>
+                    <div id="eligible-scholarships"></div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>🎯 Programs Matched for You</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Internships, hackathons, and programs you're eligible for</p>
+                    <div id="eligible-programs"></div>
+                </div>
+            </div>
+
+            <!-- All Opportunities Tab -->
+            <div id="all-opportunities-tab" class="tab-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>All Scholarships</h3>
+                        <select id="scholarship-sort" onchange="loadAllScholarships()">
+                            <option value="newest">Newest First</option>
+                            <option value="deadline">Deadline (Urgent First)</option>
+                        </select>
+                    </div>
+                    <div id="all-scholarships"></div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <h3>All Programs</h3>
+                        <div style="display: flex; gap: 1rem;">
+                            <select id="program-filter" onchange="loadAllPrograms()">
+                                <option value="">All Types</option>
+                                <option value="internship">Internships</option>
+                                <option value="fellowship">Fellowships</option>
+                                <option value="ambassador">Ambassador Programs</option>
+                                <option value="hackathon">Hackathons</option>
+                                <option value="conference">Conferences</option>
+                                <option value="coding-event">Coding Events</option>
+                            </select>
+                            <select id="program-sort" onchange="loadAllPrograms()">
+                                <option value="newest">Newest First</option>
+                                <option value="deadline">Deadline (Urgent First)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="all-programs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget">
+        <button id="chatbot-toggle" class="chatbot-toggle">
+            💬
+        </button>
+        <div id="chatbot-container" class="chatbot-container" style="display: none;">
+            <div class="chatbot-header">
+                <h4>ScholarMatch Assistant</h4>
+                <button id="chatbot-close">×</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="bot-message">
+                    <p>Hi! I'm here to help you with any questions about scholarships and programs. How can I assist you today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Ask me anything...">
+                <button id="chatbot-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/student.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

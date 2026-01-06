@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ScholarMatch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎓 ScholarMatch Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#scholarships">Scholarships</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><span id="admin-name"></span></li>
+                <li><button class="btn btn-primary" onclick="logout()">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Welcome, <span id="admin-welcome"></span>!</h2>
+                <p>Manage scholarships and programs from your admin panel</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <h3>Total Scholarships</h3>
+                    <div class="stat-number" id="total-scholarships">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Programs</h3>
+                    <div class="stat-number" id="total-programs">0</div>
+                </div>
+            </div>
+
+            <!-- Scholarships Section -->
+            <div class="card" id="scholarships">
+                <div class="card-header">
+                    <h3>Scholarships Management</h3>
+                    <button class="btn btn-primary" onclick="showAddScholarshipForm()">+ Add Scholarship</button>
+                </div>
+                
+                <!-- Add Scholarship Form (Hidden by default) -->
+                <div id="add-scholarship-form" style="display: none; margin-bottom: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
+                    <h4>Add New Scholarship</h4>
+                    <form id="scholarship-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Provider</label>
+                                <input type="text" name="provider" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;"></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="text" name="amount" placeholder="e.g., $5000">
+                            </div>
+                            <div class="form-group">
+                                <label>Deadline</label>
+                                <input type="date" name="deadline" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Application Link</label>
+                            <input type="url" name="applicationLink">
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem; color: var(--primary-color);">Eligibility Criteria</h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Gender (comma-separated or 'all')</label>
+                                <input type="text" name="gender" placeholder="all or female,other">
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum CGPA</label>
+                                <input type="number" name="minCGPA" step="0.1" min="0" max="10" value="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Year (comma-separated)</label>
+                                <input type="text" name="year" placeholder="e.g., 1,2,3,4">
+                            </div>
+                            <div class="form-group">
+                                <label>Departments (comma-separated)</label>
+                                <input type="text" name="departments" placeholder="e.g., CS,IT">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Required Skills (comma-separated)</label>
+                            <input type="text" name="requiredSkills" placeholder="e.g., Python,JavaScript">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tags (comma-separated)</label>
+                            <input type="text" name="tags" placeholder="e.g., women,tech,diversity">
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary">Save Scholarship</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideAddScholarshipForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="scholarships-list"></div>
+            </div>
+
+            <!-- Programs Section -->
+            <div class="card" id="programs" style="margin-top: 2rem;">
+                <div class="card-header">
+                    <h3>Programs Management</h3>
+                    <button class="btn btn-primary" onclick="showAddProgramForm()">+ Add Program</button>
+                </div>
+                
+                <!-- Add Program Form -->
+                <div id="add-program-form" style="display: none; margin-bottom: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
+                    <h4>Add New Program</h4>
+                    <form id="program-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Provider</label>
+                                <input type="text" name="provider" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;"></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select name="type" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="internship">Internship</option>
+                                    <option value="fellowship">Fellowship</option>
+                                    <option value="ambassador">Ambassador Program</option>
+                                    <option value="hackathon">Hackathon</option>
+                                    <option value="conference">Conference</option>
+                                    <option value="coding-event">Coding Event</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <input type="text" name="duration" placeholder="e.g., 3 months">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Deadline</label>
+                                <input type="date" name="deadline" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" name="location" placeholder="e.g., Remote, USA">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Application Link</label>
+                            <input type="url" name="applicationLink">
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem; color: var(--primary-color);">Eligibility Criteria</h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Gender (comma-separated or 'all')</label>
+                                <input type="text" name="gender" placeholder="all or female,other">
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum CGPA</label>
+                                <input type="number" name="minCGPA" step="0.1" min="0" max="10" value="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Year (comma-separated)</label>
+                                <input type="text" name="year" placeholder="e.g., 1,2,3,4">
+                            </div>
+                            <div class="form-group">
+                                <label>Departments (comma-separated)</label>
+                                <input type="text" name="departments" placeholder="e.g., CS,IT">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Required Skills (comma-separated)</label>
+                            <input type="text" name="requiredSkills" placeholder="e.g., Python,JavaScript">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tags (comma-separated)</label>
+                            <input type="text" name="tags" placeholder="e.g., google,women,tech">
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary">Save Program</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideAddProgramForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="programs-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

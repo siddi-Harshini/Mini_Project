@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs - ScholarMatch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">🎓 ScholarMatch</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scholarships.html">Scholarships</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="login.html" class="btn-primary">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section style="padding: 3rem 0; background: var(--bg-light);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Programs & Opportunities</h1>
+                <p style="font-size: 1.2rem; color: var(--text-light);">Internships, Hackathons, Fellowships and more</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="register.html" class="btn btn-primary">Register to see your matches</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h3>All Programs (<span id="program-count">0</span>)</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <select id="type-select" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                            <option value="">All Types</option>
+                            <option value="internship">Internships</option>
+                            <option value="fellowship">Fellowships</option>
+                            <option value="ambassador">Ambassador Programs</option>
+                            <option value="hackathon">Hackathons</option>
+                            <option value="conference">Conferences</option>
+                            <option value="coding-event">Coding Events</option>
+                        </select>
+                        <select id="sort-select" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                            <option value="newest">Newest First</option>
+                            <option value="deadline">Deadline (Urgent First)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="programs-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ScholarMatch Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        async function loadPrograms() {
+            const sort = document.getElementById('sort-select').value;
+            const type = document.getElementById('type-select').value;
+            
+            let endpoint = sort === 'deadline' ? '/programs/by-deadline' : '/programs';
+            if (type) {
+                endpoint += `?type=${type}`;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`);
+                const data = await response.json();
+                
+                document.getElementById('program-count').textContent = data.count;
+                displayPrograms(data.programs);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('programs-container').innerHTML = 
+                    '<p style="text-align: center; color: var(--danger-color);">Error loading programs. Please try again later.</p>';
+            }
+        }
+
+        function displayPrograms(programs) {
+            const container = document.getElementById('programs-container');
+            
+            if (programs.length === 0) {
+                container.innerHTML = '<p style="text-align: center;">No programs available at the moment.</p>';
+                return;
+            }
+            
+            const typeColors = {
+                'internship': '#3b82f6',
+                'fellowship': '#8b5cf6',
+                'ambassador': '#ec4899',
+                'hackathon': '#f59e0b',
+                'conference': '#10b981',
+                'coding-event': '#ef4444'
+            };
+            
+            container.innerHTML = programs.map(p => {
+                const daysLeft = Math.ceil((new Date(p.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+                const isUrgent = daysLeft <= 30;
+                const typeColor = typeColors[p.type] || 'var(--primary-color)';
+                
+                return `
+                    <div class="card" style="margin-bottom: 1.5rem; ${isUrgent ? 'border-left: 4px solid var(--danger-color);' : ''}">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div style="flex: 1;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                                    <h3 style="margin: 0;">${p.title}</h3>
+                                    <span style="background: ${typeColor}; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 600;">
+                                        ${p.type}
+                                    </span>
+                                </div>
+                                <p style="color: var(--text-light); margin: 0.5rem 0;"><strong>Provider:</strong> ${p.provider}</p>
+                                <p>${p.description}</p>
+                                <p style="margin-top: 0.75rem;">
+                                    <strong>Duration:</strong> ${p.duration || 'Not specified'} | 
+                                    <strong>Location:</strong> ${p.location || 'Not specified'}
+                                </p>
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                                    ${p.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div style="text-align: right; min-width: 150px; margin-left: 1rem;">
+                                <p style="font-weight: 600; color: ${isUrgent ? 'var(--danger-color)' : 'var(--primary-color)'};">
+                                    ${isUrgent ? '⚠️ Urgent<br>' : ''}${daysLeft} days left
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="margin: 0;"><strong>Deadline:</strong> ${new Date(p.deadline).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                <p style="margin: 0.25rem 0 0 0; color: var(--text-light); font-size: 0.9rem;">
+                                    Min CGPA: ${p.eligibility.minCGPA || 'Not specified'}
+                                </p>
+                            </div>
+                            ${p.applicationLink ? `<a href="${p.applicationLink}" target="_blank" class="btn btn-primary">Learn More →</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.getElementById('sort-select').addEventListener('change', loadPrograms);
+        document.getElementById('type-select').addEventListener('change', loadPrograms);
+        loadPrograms();
+    </script>
+</body>
+</html>

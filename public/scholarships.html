@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships - ScholarMatch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">🎓 ScholarMatch</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scholarships.html">Scholarships</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="login.html" class="btn-primary">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section style="padding: 3rem 0; background: var(--bg-light);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Available Scholarships</h1>
+                <p style="font-size: 1.2rem; color: var(--text-light);">Discover funding opportunities for your education</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="register.html" class="btn btn-primary">Register to see your matches</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3>All Scholarships (<span id="scholarship-count">0</span>)</h3>
+                    <select id="sort-select" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                        <option value="newest">Newest First</option>
+                        <option value="deadline">Deadline (Urgent First)</option>
+                    </select>
+                </div>
+                <div id="scholarships-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ScholarMatch Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        async function loadScholarships() {
+            const sort = document.getElementById('sort-select').value;
+            const endpoint = sort === 'deadline' ? '/scholarships/by-deadline' : '/scholarships';
+            
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`);
+                const data = await response.json();
+                
+                document.getElementById('scholarship-count').textContent = data.count;
+                displayScholarships(data.scholarships);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('scholarships-container').innerHTML = 
+                    '<p style="text-align: center; color: var(--danger-color);">Error loading scholarships. Please try again later.</p>';
+            }
+        }
+
+        function displayScholarships(scholarships) {
+            const container = document.getElementById('scholarships-container');
+            
+            if (scholarships.length === 0) {
+                container.innerHTML = '<p style="text-align: center;">No scholarships available at the moment.</p>';
+                return;
+            }
+            
+            container.innerHTML = scholarships.map(s => {
+                const daysLeft = Math.ceil((new Date(s.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+                const isUrgent = daysLeft <= 30;
+                
+                return `
+                    <div class="card" style="margin-bottom: 1.5rem; ${isUrgent ? 'border-left: 4px solid var(--danger-color);' : ''}">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div style="flex: 1;">
+                                <h3>${s.title}</h3>
+                                <p style="color: var(--text-light); margin: 0.5rem 0;"><strong>Provider:</strong> ${s.provider}</p>
+                                <p>${s.description}</p>
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                                    ${s.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div style="text-align: right; min-width: 150px; margin-left: 1rem;">
+                                ${s.amount ? `<p style="font-size: 1.3rem; font-weight: bold; color: var(--success-color); margin-bottom: 0.5rem;">${s.amount}</p>` : ''}
+                                <p style="font-weight: 600; color: ${isUrgent ? 'var(--danger-color)' : 'var(--primary-color)'};">
+                                    ${isUrgent ? '⚠️ Urgent<br>' : ''}${daysLeft} days left
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="margin: 0;"><strong>Deadline:</strong> ${new Date(s.deadline).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                <p style="margin: 0.25rem 0 0 0; color: var(--text-light); font-size: 0.9rem;">
+                                    Min CGPA: ${s.eligibility.minCGPA || 'Not specified'}
+                                </p>
+                            </div>
+                            ${s.applicationLink ? `<a href="${s.applicationLink}" target="_blank" class="btn btn-primary">Learn More →</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.getElementById('sort-select').addEventListener('change', loadScholarships);
+        loadScholarships();
+    </script>
+</body>
+</html>
