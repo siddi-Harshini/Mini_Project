@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Scholarship = require('../models/Scholarship');
-const User = require('../models/User');
-const { authMiddleware, adminMiddleware } = require('../middleware/auth');
+const Scholarship = require('../../models/Scholarship');
+const User = require('../../models/User');
+const { authMiddleware, adminMiddleware } = require('../../middleware/auth');
 
 // Apply auth middleware to all routes
 router.use(authMiddleware);

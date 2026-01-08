@@ -1,4 +1,4 @@
-# 🎓 ScholarMatch - College Scholarship & Programs Platform
+# 🎓 ScholarLens - College Scholarship & Programs Platform
 
 A comprehensive web platform for discovering scholarships and programs with AI-powered personalized matching based on student profiles.
 

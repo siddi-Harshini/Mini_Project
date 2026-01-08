@@ -3,237 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - ScholarMatch</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Admin Dashboard - ScholarLens</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-modern.css">
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Modern Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-modern sticky-top">
         <div class="container">
-            <div class="nav-brand">
-                <h1>🎓 ScholarMatch Admin</h1>
+            <a class="navbar-brand brand-logo" href="admin-dashboard.html">
+                <i class="fas fa-user-shield"></i> ScholarLens Admin
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#scholarships"><i class="fas fa-money-bill-wave me-1"></i>Scholarships</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs"><i class="fas fa-rocket me-1"></i>Programs</a></li>
+                    <li class="nav-item"><span class="nav-link" id="admin-name"><i class="fas fa-user me-1"></i>Admin</span></li>
+                    <li class="nav-item"><button class="btn btn-gradient btn-sm ms-2" onclick="logout()"><i class="fas fa-sign-out-alt me-1"></i>Logout</button></li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#scholarships">Scholarships</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><span id="admin-name"></span></li>
-                <li><button class="btn btn-primary" onclick="logout()">Logout</button></li>
-            </ul>
         </div>
     </nav>
 
-    <div class="dashboard">
+    <div class="py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh;">
         <div class="container">
-            <div class="dashboard-header">
-                <h2>Welcome, <span id="admin-welcome"></span>!</h2>
-                <p>Manage scholarships and programs from your admin panel</p>
+            <!-- Welcome Header -->
+            <div class="mb-5">
+                <h2 class="mb-2" style="font-weight: 700; color: #1a1a1a;">Welcome, <span id="admin-welcome">Admin</span>! 👋</h2>
+                <p class="text-muted mb-0">Manage scholarships and programs from your admin panel</p>
             </div>
 
-            <div class="dashboard-grid">
-                <div class="stat-card">
-                    <h3>Total Scholarships</h3>
-                    <div class="stat-number" id="total-scholarships">0</div>
+            <!-- Stats Cards -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="card-body text-white p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-white-50 mb-2" style="font-size: 0.875rem; font-weight: 600;">Total Scholarships</h6>
+                                    <h2 class="mb-0" style="font-weight: 700;" id="total-scholarships">
+                                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                                    </h2>
+                                </div>
+                                <div class="bg-white bg-opacity-25 p-3 rounded-circle">
+                                    <i class="fas fa-money-bill-wave" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                            <small class="text-white-50"><i class="fas fa-arrow-up me-1"></i>Active opportunities</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h3>Total Programs</h3>
-                    <div class="stat-number" id="total-programs">0</div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="card-body text-white p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-white-50 mb-2" style="font-size: 0.875rem; font-weight: 600;">Total Programs</h6>
+                                    <h2 class="mb-0" style="font-weight: 700;" id="total-programs">
+                                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                                    </h2>
+                                </div>
+                                <div class="bg-white bg-opacity-25 p-3 rounded-circle">
+                                    <i class="fas fa-rocket" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                            <small class="text-white-50"><i class="fas fa-arrow-up me-1"></i>Active programs</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="card-body text-white p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-white-50 mb-2" style="font-size: 0.875rem; font-weight: 600;">Total Students</h6>
+                                    <h2 class="mb-0" style="font-weight: 700;" id="total-students">
+                                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                                    </h2>
+                                </div>
+                                <div class="bg-white bg-opacity-25 p-3 rounded-circle">
+                                    <i class="fas fa-user-graduate" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                            <small class="text-white-50"><i class="fas fa-users me-1"></i>Registered users</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="card-body text-white p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-white-50 mb-2" style="font-size: 0.875rem; font-weight: 600;">Active This Month</h6>
+                                    <h2 class="mb-0" style="font-weight: 700;" id="active-opportunities">
+                                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                                    </h2>
+                                </div>
+                                <div class="bg-white bg-opacity-25 p-3 rounded-circle">
+                                    <i class="fas fa-chart-line" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                            <small class="text-white-50"><i class="fas fa-calendar me-1"></i>Recent additions</small>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Scholarships Section -->
-            <div class="card" id="scholarships">
-                <div class="card-header">
-                    <h3>Scholarships Management</h3>
-                    <button class="btn btn-primary" onclick="showAddScholarshipForm()">+ Add Scholarship</button>
+            <div class="card border-0 shadow-sm mb-4" id="scholarships" style="border-radius: 15px;">
+                <div class="card-header bg-white border-0 p-4" style="border-radius: 15px 15px 0 0;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="mb-1" style="font-weight: 700; color: #1a1a1a;"><i class="fas fa-money-bill-wave me-2" style="color: #667eea;"></i>Scholarships Management</h3>
+                            <p class="text-muted small mb-0">Add, edit, and manage scholarship opportunities</p>
+                        </div>
+                        <button class="btn btn-gradient" onclick="showAddScholarshipForm()" style="padding: 0.75rem 1.5rem; font-weight: 600;">
+                            <i class="fas fa-plus me-2"></i>Add Scholarship
+                        </button>
+                    </div>
                 </div>
-                
-                <!-- Add Scholarship Form (Hidden by default) -->
-                <div id="add-scholarship-form" style="display: none; margin-bottom: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
-                    <h4>Add New Scholarship</h4>
-                    <form id="scholarship-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Title</label>
-                                <input type="text" name="title" required>
+                <div class="card-body p-4">
+                    <!-- Add Scholarship Form (Hidden by default) -->
+                    <div id="add-scholarship-form" class="d-none mb-4 p-4" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 20%); border-radius: 10px; border-left: 4px solid #667eea;">
+                        <h5 class="mb-4" style="color: #667eea; font-weight: 600;"><i class="fas fa-plus-circle me-2"></i>Add New Scholarship</h5>
+                        <form id="scholarship-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Title *</label>
+                                    <input type="text" class="form-control" name="title" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Provider *</label>
+                                    <input type="text" class="form-control" name="provider" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Description *</label>
+                                    <textarea class="form-control" name="description" rows="3" required></textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Amount</label>
+                                    <input type="text" class="form-control" name="amount" placeholder="e.g., $5000">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Deadline *</label>
+                                    <input type="date" class="form-control" name="deadline" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Minimum CGPA</label>
+                                    <input type="number" class="form-control" name="minCGPA" step="0.1" min="0" max="10" value="0">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Application Link</label>
+                                    <input type="url" class="form-control" name="applicationLink" placeholder="https://...">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Gender Eligibility</label>
+                                    <input type="text" class="form-control" name="gender" placeholder="all or female,male,other" value="all">
+                                    <small class="text-muted">Comma-separated or 'all'</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Year Eligibility</label>
+                                    <input type="text" class="form-control" name="year" placeholder="e.g., 1,2,3,4">
+                                    <small class="text-muted">Comma-separated year numbers</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Departments</label>
+                                    <input type="text" class="form-control" name="departments" placeholder="e.g., CS,IT,ECE">
+                                    <small class="text-muted">Comma-separated department codes</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Required Skills</label>
+                                    <input type="text" class="form-control" name="requiredSkills" placeholder="e.g., Python,JavaScript">
+                                    <small class="text-muted">Comma-separated skills</small>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Tags</label>
+                                    <input type="text" class="form-control" name="tags" placeholder="e.g., women,tech,diversity">
+                                    <small class="text-muted">Comma-separated tags for categorization</small>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Provider</label>
-                                <input type="text" name="provider" required>
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="submit" class="btn btn-gradient"><i class="fas fa-save me-2"></i>Save Scholarship</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="hideAddScholarshipForm()"><i class="fas fa-times me-2"></i>Cancel</button>
                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;"></textarea>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="text" name="amount" placeholder="e.g., $5000">
-                            </div>
-                            <div class="form-group">
-                                <label>Deadline</label>
-                                <input type="date" name="deadline" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Application Link</label>
-                            <input type="url" name="applicationLink">
-                        </div>
-                        
-                        <h4 style="margin-top: 1.5rem; color: var(--primary-color);">Eligibility Criteria</h4>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Gender (comma-separated or 'all')</label>
-                                <input type="text" name="gender" placeholder="all or female,other">
-                            </div>
-                            <div class="form-group">
-                                <label>Minimum CGPA</label>
-                                <input type="number" name="minCGPA" step="0.1" min="0" max="10" value="0">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Year (comma-separated)</label>
-                                <input type="text" name="year" placeholder="e.g., 1,2,3,4">
-                            </div>
-                            <div class="form-group">
-                                <label>Departments (comma-separated)</label>
-                                <input type="text" name="departments" placeholder="e.g., CS,IT">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Required Skills (comma-separated)</label>
-                            <input type="text" name="requiredSkills" placeholder="e.g., Python,JavaScript">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Tags (comma-separated)</label>
-                            <input type="text" name="tags" placeholder="e.g., women,tech,diversity">
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem;">
-                            <button type="submit" class="btn btn-primary">Save Scholarship</button>
-                            <button type="button" class="btn btn-secondary" onclick="hideAddScholarshipForm()">Cancel</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    
+                    <div id="scholarships-list" class="row g-3"></div>
                 </div>
-                
-                <div id="scholarships-list"></div>
             </div>
 
             <!-- Programs Section -->
-            <div class="card" id="programs" style="margin-top: 2rem;">
-                <div class="card-header">
-                    <h3>Programs Management</h3>
-                    <button class="btn btn-primary" onclick="showAddProgramForm()">+ Add Program</button>
+            <div class="card border-0 shadow-sm" id="programs" style="border-radius: 15px;">
+                <div class="card-header bg-white border-0 p-4" style="border-radius: 15px 15px 0 0;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="mb-1" style="font-weight: 700; color: #1a1a1a;"><i class="fas fa-rocket me-2" style="color: #f093fb;"></i>Programs Management</h3>
+                            <p class="text-muted small mb-0">Add, edit, and manage program opportunities</p>
+                        </div>
+                        <button class="btn btn-gradient" onclick="showAddProgramForm()" style="padding: 0.75rem 1.5rem; font-weight: 600;">
+                            <i class="fas fa-plus me-2"></i>Add Program
+                        </button>
+                    </div>
                 </div>
-                
-                <!-- Add Program Form -->
-                <div id="add-program-form" style="display: none; margin-bottom: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
-                    <h4>Add New Program</h4>
-                    <form id="program-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Title</label>
-                                <input type="text" name="title" required>
+                <div class="card-body p-4">
+                    <!-- Add Program Form -->
+                    <div id="add-program-form" class="d-none mb-4 p-4" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 20%); border-radius: 10px; border-left: 4px solid #f093fb;">
+                        <h5 class="mb-4" style="color: #f093fb; font-weight: 600;"><i class="fas fa-plus-circle me-2"></i>Add New Program</h5>
+                        <form id="program-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Title *</label>
+                                    <input type="text" class="form-control" name="title" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Provider *</label>
+                                    <input type="text" class="form-control" name="provider" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Description *</label>
+                                    <textarea class="form-control" name="description" rows="3" required></textarea>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Type *</label>
+                                    <select class="form-select" name="type" required>
+                                        <option value="internship">Internship</option>
+                                        <option value="fellowship">Fellowship</option>
+                                        <option value="ambassador">Ambassador Program</option>
+                                        <option value="hackathon">Hackathon</option>
+                                        <option value="conference">Conference</option>
+                                        <option value="coding-event">Coding Event</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Duration</label>
+                                    <input type="text" class="form-control" name="duration" placeholder="e.g., 3 months">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Deadline *</label>
+                                    <input type="date" class="form-control" name="deadline" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Location</label>
+                                    <input type="text" class="form-control" name="location" placeholder="Remote, USA">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Application Link</label>
+                                    <input type="url" class="form-control" name="applicationLink" placeholder="https://...">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Minimum CGPA</label>
+                                    <input type="number" class="form-control" name="minCGPA" step="0.1" min="0" max="10" value="0">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Gender Eligibility</label>
+                                    <input type="text" class="form-control" name="gender" placeholder="all" value="all">
+                                    <small class="text-muted">Comma-separated or 'all'</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Year Eligibility</label>
+                                    <input type="text" class="form-control" name="year" placeholder="1,2,3,4">
+                                    <small class="text-muted">Comma-separated years</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Departments</label>
+                                    <input type="text" class="form-control" name="departments" placeholder="CS,IT,ECE">
+                                    <small class="text-muted">Comma-separated codes</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Required Skills</label>
+                                    <input type="text" class="form-control" name="requiredSkills" placeholder="Python,JavaScript">
+                                    <small class="text-muted">Comma-separated skills</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Tags</label>
+                                    <input type="text" class="form-control" name="tags" placeholder="google,women,tech">
+                                    <small class="text-muted">Comma-separated tags</small>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Provider</label>
-                                <input type="text" name="provider" required>
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="submit" class="btn btn-gradient"><i class="fas fa-save me-2"></i>Save Program</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="hideAddProgramForm()"><i class="fas fa-times me-2"></i>Cancel</button>
                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;"></textarea>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select name="type" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px;">
-                                    <option value="internship">Internship</option>
-                                    <option value="fellowship">Fellowship</option>
-                                    <option value="ambassador">Ambassador Program</option>
-                                    <option value="hackathon">Hackathon</option>
-                                    <option value="conference">Conference</option>
-                                    <option value="coding-event">Coding Event</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Duration</label>
-                                <input type="text" name="duration" placeholder="e.g., 3 months">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Deadline</label>
-                                <input type="date" name="deadline" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Location</label>
-                                <input type="text" name="location" placeholder="e.g., Remote, USA">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Application Link</label>
-                            <input type="url" name="applicationLink">
-                        </div>
-                        
-                        <h4 style="margin-top: 1.5rem; color: var(--primary-color);">Eligibility Criteria</h4>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Gender (comma-separated or 'all')</label>
-                                <input type="text" name="gender" placeholder="all or female,other">
-                            </div>
-                            <div class="form-group">
-                                <label>Minimum CGPA</label>
-                                <input type="number" name="minCGPA" step="0.1" min="0" max="10" value="0">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Year (comma-separated)</label>
-                                <input type="text" name="year" placeholder="e.g., 1,2,3,4">
-                            </div>
-                            <div class="form-group">
-                                <label>Departments (comma-separated)</label>
-                                <input type="text" name="departments" placeholder="e.g., CS,IT">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Required Skills (comma-separated)</label>
-                            <input type="text" name="requiredSkills" placeholder="e.g., Python,JavaScript">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Tags (comma-separated)</label>
-                            <input type="text" name="tags" placeholder="e.g., google,women,tech">
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem;">
-                            <button type="submit" class="btn btn-primary">Save Program</button>
-                            <button type="button" class="btn btn-secondary" onclick="hideAddProgramForm()">Cancel</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    
+                    <div id="programs-list" class="row g-3"></div>
                 </div>
-                
-                <div id="programs-list"></div>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/admin.js"></script>
 </body>
