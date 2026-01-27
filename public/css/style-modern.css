@@ -79,6 +79,20 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
 }
 
+/* ===== AMAZON-STYLE CARDS ===== */
+.scholarship-card:hover,
+.program-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-4px) !important;
+    border-color: #d1d5db !important;
+}
+
+.scholarship-card .btn-primary:hover,
+.program-card .btn-primary:hover {
+    background: #1d4ed8 !important;
+    transform: translateY(-1px);
+}
+
 /* ===== NAVBAR MODERN ===== */
 .navbar-modern {
     background: var(--white);
@@ -825,4 +839,173 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-muted {
     color: var(--text-muted) !important;
+}
+/* ===== NEW HERO SECTION ===== */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content h1 {
+    line-height: 1.2;
+    animation: slideInLeft 0.8s ease;
+}
+
+.badge-hero {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== STATS SECTION ===== */
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stat-number {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-section {
+    padding: 5rem 0;
+}
+
+/* ===== SCHOLARSHIPS SHOWCASE ===== */
+.scholarships-showcase {
+    padding: 5rem 0;
+}
+
+.table {
+    border-collapse: collapse;
+}
+
+.table thead th {
+    background: #f3f4f6;
+    color: #1f2937;
+    border: none;
+    padding: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody td {
+    padding: 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-section {
+    padding: 5rem 0;
+    background: white;
+}
+
+.testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ===== NEWSLETTER SECTION ===== */
+.newsletter-section {
+    padding: 4rem 0;
+}
+
+.newsletter-section .form-control {
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #1f2937;
+}
+
+.newsletter-section .form-control:focus {
+    box-shadow: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.newsletter-section .btn {
+    border-radius: 8px;
+}
+
+/* ===== FOOTER ===== */
+.footer-modern {
+    border-top: 1px solid #333;
+}
+
+.hover-link {
+    transition: color 0.3s ease;
+}
+
+.hover-link:hover {
+    color: #667eea !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .stat-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .table {
+        font-size: 0.85rem;
+    }
+    
+    .newsletter-section {
+        text-align: center;
+    }
+    
+    .newsletter-section .input-group {
+        flex-direction: column;
+    }
+    
+    .newsletter-section .input-group-btn {
+        margin-top: 0.5rem;
+    }
 }

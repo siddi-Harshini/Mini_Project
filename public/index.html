@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScholarLens - Find Your Perfect Scholarship</title>
+    <title>ScholarLens - Smart Search For Smart Students</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,125 +23,229 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="scholarships.html">Scholarships</a></li>
                     <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="btn btn-gradient ms-2" href="login.html">Login</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Modern Design -->
-    <section class="hero-modern">
-        <div class="container">
-            <div class="row align-items-center min-vh">
+    <!-- Hero Section with Background Image -->
+    <section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200&q=80'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row align-items-center py-5" style="min-height: 70vh;">
                 <div class="col-lg-6 hero-content">
-                    <h1 class="display-3 fw-bold mb-4 text-white">
-                        Discover Your Perfect Scholarship
+                    <span class="badge badge-hero mb-3">⭐ Trusted by 10,000+ Students</span>
+                    <h1 class="display-4 fw-bold mb-4 text-white">
+                        Smart Search For <span style="color: #ffd700;">Smart Students</span>
                     </h1>
-                    <p class="lead mb-4 text-white">
-                        AI-powered platform connecting students with scholarships and programs tailored to their profile, skills, and dreams.
+                    <p class="lead mb-4 text-white" style="font-size: 1.2rem;">
+                        Don't miss out on $50,000+ worth of scholarships your child qualifies for. Get yours today!
                     </p>
                     <div class="d-flex gap-3 flex-wrap">
-                        <a href="register.html" class="btn btn-gradient btn-lg px-5">
-                            <i class="fas fa-rocket me-2"></i>Get Started
+                        <a href="register.html" class="btn btn-light btn-lg px-5 fw-bold">
+                            <i class="fas fa-user-plus me-2"></i>Register Today
                         </a>
-                        <a href="scholarships.html" class="btn btn-white btn-lg px-5">
+                        <a href="scholarships.html" class="btn btn-outline-light btn-lg px-5">
                             <i class="fas fa-search me-2"></i>Explore Now
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <div class="hero-illustration">
-                        <i class="fas fa-book-open"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80" alt="Student" class="img-fluid rounded-lg shadow-lg" style="max-width: 100%; border-radius: 20px;">
                 </div>
             </div>
         </div>
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section py-5">
+    <!-- Stats Section - Impressive Success Rates -->
+    <section class="stats-section py-5" style="background: #f8f9fa;">
         <div class="container">
+            <h3 class="text-center mb-5 fw-bold">Explore our impressive success rates below!</h3>
             <div class="row text-center">
-                <div class="col-md-4">
-                    <div class="stat-item">
-                        <h3 class="stat-number text-gradient">500+</h3>
-                        <p class="stat-label">Scholarships</p>
+                <div class="col-md-4 mb-4">
+                    <div class="stat-card p-4">
+                        <h2 class="stat-number" style="color: #667eea; font-size: 3rem;">500+</h2>
+                        <p class="stat-label fw-bold">Active Scholarships</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="stat-item">
-                        <h3 class="stat-number text-gradient">300+</h3>
-                        <p class="stat-label">Programs</p>
+                <div class="col-md-4 mb-4">
+                    <div class="stat-card p-4">
+                        <h2 class="stat-number" style="color: #667eea; font-size: 3rem;">50M+</h2>
+                        <p class="stat-label fw-bold">Worth of Scholarships</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="stat-item">
-                        <h3 class="stat-number text-gradient">10K+</h3>
-                        <p class="stat-label">Students</p>
+                <div class="col-md-4 mb-4">
+                    <div class="stat-card p-4">
+                        <h2 class="stat-number" style="color: #667eea; font-size: 3rem;">10K+</h2>
+                        <p class="stat-label fw-bold">Successful Students</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-modern py-5">
+    <!-- About Us Section -->
+    <section id="about" class="about-section py-5">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Why Choose ScholarLens?</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card-modern">
-                        <div class="feature-icon-bg gradient-purple">
-                            <i class="fas fa-bullseye"></i>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80" alt="About ScholarLens" class="img-fluid rounded-lg shadow-lg" style="border-radius: 20px;">
+                </div>
+                <div class="col-lg-6 ps-lg-4">
+                    <h2 class="fw-bold mb-4" style="font-size: 2.5rem; color: #667eea;">About ScholarLens</h2>
+                    <p class="lead mb-3">
+                        <strong>Dream Big, Pay Less!</strong> Our scholarship platform connects you with a variety of scholarships – big or small, unique or mainstream, for all fields and dreams.
+                    </p>
+                    <p class="mb-3">
+                        Whether you're pursuing undergraduate, postgraduate, or specialized programs, we make finding and applying for scholarships as easy as scrolling through your favorite app. No stress, no fuss—just real opportunities to fund your dreams.
+                    </p>
+                    <p class="mb-4">
+                        With our AI-powered matching algorithm and comprehensive database of 500+ scholarships and 300+ programs, finding your perfect fit has never been easier.
+                    </p>
+                    <a href="scholarships.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-arrow-right me-2"></i>Explore Opportunities
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Scholarships Section -->
+    <section class="scholarships-showcase py-5" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="font-size: 2.5rem;">Featured Scholarships</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="fw-bold">Scholarship Name</th>
+                            <th class="fw-bold">Provider</th>
+                            <th class="fw-bold">Deadline</th>
+                            <th class="fw-bold">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Global Leaders Scholarship</strong></td>
+                            <td>Microsoft</td>
+                            <td>Jul-2026</td>
+                            <td><a href="register.html" class="btn btn-sm btn-outline-primary">Apply</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Innovation Grant Program</strong></td>
+                            <td>Google</td>
+                            <td>Jun-2026</td>
+                            <td><a href="register.html" class="btn btn-sm btn-outline-primary">Apply</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Future Leaders Initiative</strong></td>
+                            <td>Tech Giants Inc</td>
+                            <td>Aug-2026</td>
+                            <td><a href="register.html" class="btn btn-sm btn-outline-primary">Apply</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Excellence in Engineering</strong></td>
+                            <td>Stanford University</td>
+                            <td>May-2026</td>
+                            <td><a href="register.html" class="btn btn-sm btn-outline-primary">Apply</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-4">
+                <a href="scholarships.html" class="btn btn-primary btn-lg">
+                    View All Scholarships <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="font-size: 2.5rem;">Testimonials</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Student" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Sarah Johnson</h6>
+                                <small class="text-muted">Student at MIT</small>
+                            </div>
                         </div>
-                        <h5 class="mt-3 fw-bold">Smart Matching</h5>
-                        <p class="text-muted small">Personalized recommendations based on your profile and interests</p>
+                        <p class="mb-0">"ScholarLens helped me find the perfect scholarship! The AI matching was incredibly accurate and saved me so much time."</p>
+                        <div class="mt-2">
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card-modern">
-                        <div class="feature-icon-bg gradient-blue">
-                            <i class="fas fa-bell"></i>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Student" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Rajesh Kumar</h6>
+                                <small class="text-muted">Student at Stanford</small>
+                            </div>
                         </div>
-                        <h5 class="mt-3 fw-bold">Smart Alerts</h5>
-                        <p class="text-muted small">Never miss deadlines with instant notifications</p>
+                        <p class="mb-0">"The platform is user-friendly and the notification system ensures I never miss a deadline. Highly recommended!"</p>
+                        <div class="mt-2">
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card-modern">
-                        <div class="feature-icon-bg gradient-pink">
-                            <i class="fas fa-robot"></i>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Student" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Emma Wilson</h6>
+                                <small class="text-muted">Harvard Scholar</small>
+                            </div>
                         </div>
-                        <h5 class="mt-3 fw-bold">AI Chatbot</h5>
-                        <p class="text-muted small">Get instant answers to your scholarship questions</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card-modern">
-                        <div class="feature-icon-bg gradient-green">
-                            <i class="fas fa-tachometer-alt"></i>
+                        <p class="mb-0">"I got my scholarship within 2 months of registering. The entire process was seamless and transparent."</p>
+                        <div class="mt-2">
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
                         </div>
-                        <h5 class="mt-3 fw-bold">Easy Dashboard</h5>
-                        <p class="text-muted small">Manage all opportunities in one place</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-modern py-5 bg-gradient">
-        <div class="container text-center">
-            <h2 class="text-white mb-3">Ready to Change Your Future?</h2>
-            <p class="lead text-white mb-4 opacity-90">Join thousands of students discovering scholarships and programs</p>
-            <a href="register.html" class="btn btn-light btn-lg px-5">
-                <i class="fas fa-user-plus me-2"></i>Create Account Free
-            </a>
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white mb-4 mb-lg-0">
+                    <h3 class="fw-bold mb-3">Stay Updated with ScholarLens</h3>
+                    <p class="lead">Get the latest scholarship opportunities and tips delivered to your inbox</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                        <button class="btn btn-light btn-lg fw-bold" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -169,32 +273,34 @@
         </div>
     </div>
 
-    <footer class="footer-modern mt-5">
+    <footer class="footer-modern py-5" style="background: #1a1a2e; color: #fff;">
         <div class="container">
             <div class="row mb-4">
-                <div class="col-md-4">
-                    <h6 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2 text-gradient"></i>ScholarMatch</h6>
-                    <p class="small text-muted">Empowering students to achieve their dreams through scholarships.</p>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h6 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2" style="color: #667eea;"></i>ScholarLens</h6>
+                    <p class="small">Empowering students to achieve their dreams through scholarships. Join 10,000+ successful scholars today.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h6 class="fw-bold mb-3">Quick Links</h6>
                     <ul class="list-unstyled small">
-                        <li><a href="scholarships.html" class="text-muted text-decoration-none">Scholarships</a></li>
-                        <li><a href="programs.html" class="text-muted text-decoration-none">Programs</a></li>
-                        <li><a href="login.html" class="text-muted text-decoration-none">Login</a></li>
+                        <li class="mb-2"><a href="scholarships.html" class="text-muted text-decoration-none hover-link">Scholarships</a></li>
+                        <li class="mb-2"><a href="programs.html" class="text-muted text-decoration-none hover-link">Programs</a></li>
+                        <li class="mb-2"><a href="login.html" class="text-muted text-decoration-none hover-link">Login</a></li>
+                        <li class="mb-2"><a href="register.html" class="text-muted text-decoration-none hover-link">Register</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h6 class="fw-bold mb-3">Follow Us</h6>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="text-muted"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-muted"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted hover-link"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-muted hover-link"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-muted hover-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-muted hover-link"><i class="fab fa-instagram fa-lg"></i></a>
                     </div>
                 </div>
             </div>
-            <hr>
-            <p class="text-center small text-muted mb-0">&copy; 2026 ScholarLens. All rights reserved.</p>
+            <hr style="border-color: #444;">
+            <p class="text-center small text-muted mb-0">&copy; 2026 ScholarLens. All rights reserved. | <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> | <a href="#" class="text-muted text-decoration-none">Terms & Conditions</a></p>
         </div>
     </footer>
 
